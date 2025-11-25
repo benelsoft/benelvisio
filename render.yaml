@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: benelvisio-backend
+    env: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_HOST
+        fromDatabase:
+          name: benelvisio-mysql
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: benelvisio-mysql
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: benelvisio-mysql
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: benelvisio-mysql
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: benelvisio-mysql
+          property: database
